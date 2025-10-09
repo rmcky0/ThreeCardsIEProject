@@ -148,7 +148,7 @@ const ResultModal = ({ show, message, onReshuffle, player1Score, player2Score })
     if (!show) return null;
 
     const isTie = message.includes('Tie');
-    const modalTitle = isTie ? 'DECK EMPTY - TIE GAME' : 'DECK EMPTY - ROUND OVER';
+    const modalTitle = 'DECK EMPTY';
     const resultBoxClass = isTie ? 'modal-result-box modal-result-tie' : 'modal-result-box modal-result-win';
 
     return (
@@ -166,7 +166,6 @@ const ResultModal = ({ show, message, onReshuffle, player1Score, player2Score })
               <span className="p2-score-final">Player 2: {player2Score}</span>
             </p>
           </div>
-          <p className="modal-info-text">The deck is out of cards. Please shuffle to continue play.</p>
           <button 
             onClick={onReshuffle}
             className="modal-reshuffle-button" 
@@ -284,10 +283,10 @@ const App = () => {
             let message;
             if (winnerId === 1) {
               setPlayer1Score(s => s + 1);
-              message = `Player 1 Wins! (${result1.type} beats ${result2.type})`;
+              message = 'Player 1 wins the round!';
             } else if (winnerId === 2) {
               setPlayer2Score(s => s + 1);
-              message = `Player 2 Wins! (${result2.type} beats ${result1.type})`;
+              message = 'Player 2 wins the round!';
             } else {
               message = 'It\'s a Tie! No score change.';
             }
@@ -300,11 +299,11 @@ const App = () => {
               let finalResultMessage;
 
               if(p1FinalScore > p2FinalScore){
-                finalResultMessage = `Player 1 Wins the Game! Final Score: ${p1FinalScore} - ${p2FinalScore}`;
+                finalResultMessage = 'Player 1 Wins the Game!';
               }else if(p2FinalScore > p1FinalScore){
-                finalResultMessage = `Player 2 Wins the Game! Final Score: ${p2FinalScore} - ${p1FinalScore}`;
+                finalResultMessage = 'Player 2 Wins the Game!';
               }else{
-                finalResultMessage = `It's a Tie Game! Final Score: ${p1FinalScore} - ${p2FinalScore}`;
+                finalResultMessage = 'It\'s a Tie!';
               }
                     
               setTimeout(() => {
